@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html style="height:100%">
+<head>
+  <meta charset="utf-8">
+  <title>又是520，还记得我们在一起多久了么</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <style>
+  body{padding: 20px;}
+  .demo-input{padding-left: 10px; height: 38px; min-width: 262px; line-height: 38px; border: 1px solid #e6e6e6;  background-color: #fff;  border-radius: 2px;}
+  .demo-footer{padding: 50px 0; color: #999; font-size: 14px;}
+  .demo-footer a{padding: 0 5px; color: #01AAED;}
+  </style>
+</head>
+<body>
+<div>
+<label style="width:100%;"> ○ 首次约会的时间：</label><br>
+<input style = "width:100%;margin-top:20px;" type="text" class="demo-input" placeholder="请选择日期" id="test1">
+<input style = "width:100%" type="text" class="demo-input" placeholder="请选择时间" id="test2">
+<div style="margin-top:30px;">
+<label style="width:100%;"> ● 还在一起的时间：</label><br>
+<input style = "width:100%;margin-top:20px;" type="text" class="demo-input" placeholder="请选择日期" value = "2020-05-20" id="test3">
+<input style = "width:100%" type="text" class="demo-input" placeholder="请选择时间" id="test4">
+</div>
+<div>
+<center><button style = "color:#F08080;width:100%;height:50px;margin-top:30px;font-size:18px;" id='calcs' type='button' onclick = "calcs()">我们相守多久了？点击知道答案。</button></center>
+<p id="total_time"></p>
+<center><a href="https://u.jd.com/w9Vn3w"><img id ="picture" src="./gif/preview/1.gif" alt="520快乐！要在一起哦！" style="width:90%;"></a></center><br>
+<span id="busuanzi_container_site_pv" style="font-size:12px;color:#D3D3D3;width:100%;float:right;text-align:right;position:relative;height:30px;margin-bottom:-30px;">
+您是第<span id="busuanzi_value_site_pv"></span>位访客！Copyright © 2020 By <a href="https://p.pinduoduo.com/rnY9myrA">Hylan129</a></span>
+</div>
+
+<script src="laydate/laydate.js"></script>
+<script>
+lay('#version').html('-v'+ laydate.v);
+
+laydate.render({
+  elem: '#test1'
+});
+
+laydate.render({
+  elem: '#test2'
+  ,type:'time'
+  ,value:'00:05:20'
+  ,isInitValue:false
+});
+
+laydate.render({
+  elem: '#test3'
+});
+
+laydate.render({
+  elem: '#test4'
+  ,type:'time'
+  ,value:'00:05:20'
+  ,isInitValue:false
+});
+
+</script>
+
+<script>
+window.onload = function(){
+    document.getElementById('busuanzi_value_site_pv').innerHTML = parseInt(document.getElementById('busuanzi_value_site_pv').innerHTML) + (Math.round(Math.random()*1)+0b11001001100100);
+    };
+var autoswitch1 = setInterval(autoswitchPicture1,3000);
+function autoswitchPicture1(){
+    document.getElementById('picture').src = "./gif/preview/" + (Math.round(Math.random()*14)+1) + ".gif";
+};
+function autoswitchPicture2(){
+    document.getElementById('picture').src = "./gif/zaiyiqi/" + (Math.round(Math.random()*9)+1) + ".gif";
+};
+</script>
+<script>
+function calcs(){
+    var starttime = document.getElementById('test1').value + ' ' + document.getElementById('test2').value;
+    var endtime = document.getElementById('test3').value + ' ' + document.getElementById('test4').value;
+    total_seconds = (Date.parse(endtime) - Date.parse(starttime)) / 1000;
+    if(total_seconds<0){alert('结束日期比开始日期早，请重新输入！');return;}
+    if(document.getElementById('test1').value=='' || document.getElementById('test3').value==''){
+        alert('输入日期时间有空值，请重新输入后再试！');return;}
+    days = parseInt(total_seconds/3600/24);
+    hours= parseInt((total_seconds/3600/24 - days)*24)
+    minutes = parseInt(((total_seconds/3600/24 - days)*24 -hours) * 60)
+    seconds = Math.round((((total_seconds/3600/24 - days)*24 -hours) * 60 - minutes ) * 60 )
+    needcontent = days + "天，" + hours + "小时，" + minutes + "分钟，" + seconds + "秒。" 
+    document.getElementById('total_time').innerHTML = "<center><p style= \"color:#FF1493;margin-top:20px;font-size:21px;\">" + needcontent + "</p></center>"
+    clearInterval(autoswitch1);
+    var autoswitch2 = setInterval(autoswitchPicture2,4000);
+};
+</script>
+</body>
+</html>
